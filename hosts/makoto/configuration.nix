@@ -31,7 +31,7 @@
   networking = {
     defaultGateway = "66.59.211.1";
     nameservers = [ "8.8.8.8" ];
-    inferfaces.eth0 = {
+    interfaces.eth0 = {
       ipAddress = "66.59.211.206";
       prefixLength = 24;
     };
