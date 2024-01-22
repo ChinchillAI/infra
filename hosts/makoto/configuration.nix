@@ -2,7 +2,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
-    inputs.disko.nisosModules.disko
+    inputs.disko.nixosModules.disko
     ./disk-config.nix
     ./hardware-configuration.nix
     ../../modules/palworld.nix
