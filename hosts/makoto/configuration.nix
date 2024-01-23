@@ -27,15 +27,6 @@
 
   services.openssh.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    sslh
-  ];
-
-  networking.firewall = {
-    allowedUDPPorts = [ 8211 8212 ];
-    allowedTCPPorts = [ 8211 8212 ];
-  };
-
   networking = {
     defaultGateway = "66.59.211.1";
     nameservers = [ "8.8.8.8" ];
