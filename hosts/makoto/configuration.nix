@@ -1,11 +1,10 @@
-{ modulesPath, inputs, ... }: {
+{ modulesPath, inputs, pkgs, ... }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     inputs.disko.nixosModules.disko
     ./disk-config.nix
     ./hardware-configuration.nix
-    ../../modules/palworld.nix
   ];
 
   nixpkgs = {
@@ -27,6 +26,10 @@
   };
 
   services.openssh.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    sslh
+  ];
 
   networking = {
     defaultGateway = "66.59.211.1";
