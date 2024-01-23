@@ -5,6 +5,7 @@
     inputs.disko.nixosModules.disko
     ./disk-config.nix
     ./hardware-configuration.nix
+    ../../modules/palworld.nix
   ];
 
   nixpkgs = {
