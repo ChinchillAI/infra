@@ -40,7 +40,7 @@ in
       ];
       Nice = "-5";
       PrivateTmp = true;
-      Restart = "no";
+      Restart = "always";
       User = "steam";
       WorkingDirectory = "~";
     };
