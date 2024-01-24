@@ -13,6 +13,10 @@
         specialArgs = { inherit inputs; };
         modules = [ ./hosts/makoto/configuration.nix ];
       };
+      uppie = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [ ./hosts/uppie/configuration.nix ];
+      };
     };
   };
 }
