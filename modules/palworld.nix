@@ -29,8 +29,8 @@ in
   systemd.services.palworld = {
     wantedBy = [ "multi-user.target" ];
 
-    wants = [ "steam@${steam-app}.service" ];
-    after = [ "steam@${steam-app}.service" ];
+    #wants = [ "steam@${steam-app}.service" ];
+    #after = [ "steam@${steam-app}.service" ];
 
     path = [ pkgs.xdg-user-dirs ];
 
