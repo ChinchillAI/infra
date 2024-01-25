@@ -19,6 +19,7 @@ in
 
   environment.systemPackages = with pkgs; [
     xdg-user-dirs
+    rcon
   ];
 
   networking.firewall = {
@@ -40,6 +41,14 @@ in
         "-useperfthreads"
         "-NoAsyncLoadingThread"
         "-UseMultithreadForDS"
+      ];
+      ExecStop = lib.escapeShellArgs [
+        "rcon"
+        "-s"
+        "palworld"
+        "shutdown"
+        "60"
+        "ServerShuttingDownIn60Seconds"
       ];
       Nice = "-5";
       PrivateTmp = true;
