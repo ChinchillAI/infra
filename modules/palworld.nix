@@ -42,20 +42,22 @@ in
         "-NoAsyncLoadingThread"
         "-UseMultithreadForDS"
       ];
-      ExecStop = lib.escapeShellArgs [
-        "rcon"
-        "-s"
-        "palworld"
-        "shutdown"
-        "60"
-        "ServerShuttingDownIn60Seconds"
-      ];
       Nice = "-5";
       PrivateTmp = true;
       Restart = "always";
       User = "steam";
       WorkingDirectory = "~";
     };
+
+    preStop = lib.escapeShellArgs [
+      "rcon"
+      "-s"
+      "palworld"
+      "shutdown"
+      "60"
+      "ServerShuttingDownIn60Seconds"
+    ];
+
     environment = {
       LD_LIBRARY_PATH = "/var/lib/steam-app-${steam-app}/linux64:${pkgs.glibc}/lib";
       SteamAppId = "892970";
