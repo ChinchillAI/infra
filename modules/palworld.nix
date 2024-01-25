@@ -37,6 +37,9 @@ in
     serviceConfig = {
       ExecStart = lib.escapeShellArgs [
         "/var/lib/steam-app-${steam-app}/PalServer.sh"
+        "-useperfthreads"
+        "-NoAsyncLoadingThread"
+        "-UseMultithreadForDS"
       ];
       Nice = "-5";
       PrivateTmp = true;
