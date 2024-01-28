@@ -29,7 +29,7 @@
   services.openssh.enable = true;
 
   networking = {
-    hostname = "makoto";
+    hostName = "makoto";
     defaultGateway = "66.59.211.1";
     nameservers = [ "8.8.8.8" ];
     interfaces.eth0 = {

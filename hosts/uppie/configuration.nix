@@ -29,7 +29,7 @@
   services.openssh.enable = true;
 
   networking = {
-    hostname = "uppie";
+    hostName = "uppie";
     defaultGateway = "45.8.22.1";
     nameservers = [ "9.9.9.9" ];
     interfaces.eth0 = {
