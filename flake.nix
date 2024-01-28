@@ -20,6 +20,10 @@
           specialArgs = { inherit inputs configRevision; };
           modules = [ ./hosts/makoto/configuration.nix ];
         };
+        shiny = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs configRevision; };
+          modules = [ ./hosts/shiny/configuration.nix ];
+        };
         uppie = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs configRevision; };
           modules = [ ./hosts/uppie/configuration.nix ];
