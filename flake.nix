@@ -7,16 +7,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = inputs@{ nixpkgs, disko, ... }: {
-    nixosConfigurations = {
-      makoto = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [ ./hosts/makoto/configuration.nix ];
+  outputs = inputs@{ self, nixpkgs, disko, ... }:
+    let
+      configRevision = {
+        full = self.rev or self.dirtyRev or "dirty-inputs";
+        short = self.shortRev or self.dirtyShortRev or "dirty-inputs";
       };
-      uppie = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [ ./hosts/uppie/configuration.nix ];
+    in
+    {
+      nixosConfigurations = {
+        makoto = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs configRevision; };
+          modules = [ ./hosts/makoto/configuration.nix ];
+        };
+        uppie = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs configRevision; };
+          modules = [ ./hosts/uppie/configuration.nix ];
+        };
       };
     };
-  };
 }

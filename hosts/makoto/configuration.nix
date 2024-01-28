@@ -1,4 +1,4 @@
-{ modulesPath, inputs, pkgs, ... }: {
+{ modulesPath, inputs, pkgs, configRevision, ... }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -29,6 +29,7 @@
   services.openssh.enable = true;
 
   networking = {
+    hostname = "makoto";
     defaultGateway = "66.59.211.1";
     nameservers = [ "8.8.8.8" ];
     interfaces.eth0 = {
@@ -43,5 +44,8 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEz5kBF9xzg6fej1zjgk29c+oRcl4Lv8GSnV8Bt5cAyF Firworks"
   ];
 
-  system.stateVersion = "23.11";
+  system = {
+    stateVersion = "23.11";
+    configurationRevision = configRevision.full;
+  };
 }
