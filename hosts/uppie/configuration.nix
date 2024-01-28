@@ -32,10 +32,12 @@
     hostName = "uppie";
     defaultGateway = "45.8.22.1";
     nameservers = [ "9.9.9.9" ];
-    interfaces.eth0 = {
-      ipAddress = "45.8.22.94";
-      prefixLength = 24;
-    };
+    interfaces.eth0.ipv4.addresses = [
+      {
+        address = "45.8.22.94";
+        prefixLength = 24;
+      }
+    ];
     hostId = "36449921";
   };
 
