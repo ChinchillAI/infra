@@ -20,6 +20,10 @@
 				inputs = with pkgs; [
 					patchelf
 					steamcmd
+					file
+					findutils
+					gnugrep
+					gawk
 				];
 				execer = with pkgs; [
 					"cannot:${steamcmd}/bin/steamcmd"
@@ -52,21 +56,9 @@
 
 				steamcmd $cmds
 
-				for f in $dir/*; do
-					if ! [[ -f $f && -x $f ]]; then
-						continue
-					fi
-
+				for f in $(find $dir -exec file {} \; | grep -i 'elf.*executable' | awk -F ':' '{ print $1 }'); do
 					# Update the interpreter to the path on NixOS.
-					patchelf --set-interpreter ${pkgs.glibc}/lib/ld-linux-x86-64.so.2 $f || true
-				done
-
-				for f in $dir/Pal/Binaries/Linux/*; do
-					if ! [[ -f $f && -x $f ]]; then
-						continue
-					fi
-
-					# Update the interpreter to the path on NixOS.
+					echo "Patching ELF: $f"
 					patchelf --set-interpreter ${pkgs.glibc}/lib/ld-linux-x86-64.so.2 $f || true
 				done
 			''} %i";
