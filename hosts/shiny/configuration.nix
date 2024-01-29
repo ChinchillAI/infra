@@ -15,6 +15,8 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  zramSwap.enable = true;
+
   boot = {
     supportedFilesystems = [ "zfs" ];
     loader.grub = {
