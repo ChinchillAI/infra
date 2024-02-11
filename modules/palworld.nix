@@ -101,7 +101,7 @@ in
 	     set -x
 	     CURRENT_PALWORLD_VERSION=$(curl -X GET 'https://api.steamcmd.net/v1/info/2394010' -s | jq '.data.["2394010"].depots.branches.public.buildid' -r )
 	     INSTALLED_PALWORLD_VERSION=$(cat /var/lib/palworld/installed_palworld_version)
-	     if [[ "$CURRENT_PALWORLD_VERSION" != "$INSTALLED_PALWORLD_VERSION"]]; then
+	     if [[ "$CURRENT_PALWORLD_VERSION" != "$INSTALLED_PALWORLD_VERSION" ]]; then
 	       echo "New Palworld version detected! Starting upgrade countdown..."
 	       rcon -s palworld -n broadcast New_version_released
 	       rcon -s palworld -n broadcast Upgrade_in_15_minutes
